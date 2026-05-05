@@ -1,0 +1,586 @@
+/* --- CSS VARIABLES (Easy to change colors) --- */
+:root {
+    --sidebar-width: 260px;
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --sidebar-bg: #0f172a;
+    --sidebar-item-active: #1e293b;
+    --bg-main: #f8fafc;
+    --card-white: #ffffff;
+    --text-dark: #1e293b;
+    --text-muted: #64748b;
+    --danger: #ef4444;
+    --success: #22c55e;
+    --transition-speed: 0.3s;
+}
+
+/* --- RESET & BASE STYLES --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+    background-image: url('background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    margin: 0;
+}
+
+/* Base Card Transparency */
+.card {
+    background: rgba(255, 255, 255, 0.7) !important; /* 70% opacity white */
+    backdrop-filter: blur(10px); /* Blurs the background image behind the card */
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    padding: 20px;
+}
+
+/* --- SIDEBAR ANIMATION --- */
+@keyframes slideInSidebar {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+}
+
+.sidebar {
+    width: var(--sidebar-width);
+    background: var(--sidebar-bg);
+    color: white;
+    padding: 1.5rem;
+    position: fixed;
+    height: 100vh;
+    z-index: 100;
+    animation: slideInSidebar 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    letter-spacing: -0.5px;
+    color: #f8fafc;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    color: #94a3b8;
+    text-decoration: none;
+    padding: 0.8rem 1rem;
+    border-radius: 10px;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    transition: all var(--transition-speed);
+}
+
+.nav-link:hover {
+    background: var(--sidebar-item-active);
+    color: white;
+    transform: translateX(5px);
+}
+
+.nav-link.active {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+/* --- MAIN CONTENT & LAYOUT --- */
+.main-content {
+    margin-left: var(--sidebar-width);
+    padding: 2.5rem;
+    width: calc(100% - var(--sidebar-width));
+}
+
+/* --- CARD ANIMATION --- */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    background: var(--card-white);
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* --- PROFESSIONAL TABLE --- */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px; /* Gives row-gap feel */
+    margin-top: 1.5rem;
+}
+
+th {
+    text-align: left;
+    padding: 1rem;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+td {
+    padding: 1.2rem 1rem;
+    background: #fff;
+    border-top: 1px solid #f1f5f9;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+td:first-child { border-left: 1px solid #f1f5f9; border-radius: 12px 0 0 12px; }
+td:last-child { border-right: 1px solid #f1f5f9; border-radius: 0 12px 12px 0; }
+
+tr {
+    transition: transform 0.2s ease;
+}
+
+tr:hover {
+    transform: scale(1.01);
+}
+
+/* --- FORMS (Full Width Design) --- */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+/* --- BUTTONS --- */
+.btn {
+    padding: 0.7rem 1.5rem;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    border: none;
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.4);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid #e2e8f0;
+    color: var(--text-muted);
+}
+
+.btn-outline:hover {
+    background: #f1f5f9;
+    color: var(--text-dark);
+    border-color: #cbd5e1;
+}
+
+/* Trash Specific */
+.btn-delete {
+    color: var(--danger);
+    border-color: #fee2e2;
+}
+
+.btn-delete:hover {
+    background: var(--danger);
+    color: white;
+    border-color: var(--danger);
+}
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.6); /* Dark semi-transparent bg */
+    backdrop-filter: blur(4px); /* Professional blur effect */
+    display: none; /* Hidden by default */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Modal Card with Animation */
+.modal-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+    transform: scale(0.8);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal-overlay.show { display: flex; }
+.modal-overlay.show .modal-card {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.modal-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.modal-card h3 {
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+}
+
+.modal-card p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+/* --- CALENDAR GRID --- */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    background: rgba(226, 232, 240, 0.4); /* Transparent border lines */
+    border: 1px solid rgba(226, 232, 240, 0.5);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.calendar-day-head {
+    background: rgba(248, 250, 252, 0.6); /* Semi-transparent header */
+    padding: 8px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 0.75rem;
+    color: var(--text-dark);
+}
+
+.calendar-day {
+    background: rgba(255, 255, 255, 0.4); /* Very transparent cells */
+    min-height: 75px; 
+    padding: 6px;
+    transition: background 0.3s ease;
+}
+
+.calendar-day:hover {
+    background: rgba(255, 255, 255, 0.7); /* Brightens on hover */
+}
+.calendar-day.empty { 
+    background: rgba(248, 250, 252, 0.2); 
+}
+
+.day-number {
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.day-activity {
+    background: #dbeafe;
+    color: var(--primary);
+    font-size: 0.7rem;
+    padding: 2px 5px;
+    border-radius: 3px;
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-left: 2px solid var(--primary);
+    cursor: pointer;
+}
+
+.day-activity.done {
+    background: #dcfce7;
+    color: var(--success);
+    border-left-color: var(--success);
+    text-decoration: line-through;
+}
+
+.today {
+    background: #eff6ff;
+}
+.today .day-number {
+    color: var(--primary);
+}
+:root {
+    --primary: #2563eb;
+    --success: #16a34a;
+    --danger: #dc2626;
+    --text-dark: #1e293b;
+    --text-muted: #64748b;
+    --bg-main: #f8fafc;
+}
+
+/* --- TRANSPARENT CALENDAR --- */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    /* Transparent border lines */
+    background: rgba(226, 232, 240, 0.3); 
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+    /* Blur effect for the image behind the grid */
+    backdrop-filter: blur(5px);
+}
+
+.calendar-day-head {
+    /* Semi-transparent header */
+    background: rgba(241, 245, 249, 0.6);
+    padding: 10px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 0.75rem;
+    color: var(--text-dark);
+    text-transform: uppercase;
+}
+
+.calendar-day {
+    /* Soft transparency for day cells */
+    background: rgba(255, 255, 255, 0.25);
+    min-height: 100px;
+    padding: 8px;
+    transition: background 0.3s ease;
+}
+
+.calendar-day:hover {
+    background: rgba(255, 255, 255, 0.45);
+}
+
+.calendar-day.today { 
+    background: rgba(37, 99, 235, 0.15); 
+    border: 1px solid var(--primary);
+}
+
+.calendar-day.today .day-number { 
+    color: var(--primary); 
+    font-weight: 800; 
+}
+
+.day-number { 
+    font-size: 0.85rem; 
+    font-weight: 600; 
+    margin-bottom: 5px; 
+    display: block;
+    color: var(--text-dark);
+}
+
+/* Activity badges with transparency */
+.day-activity {
+    background: rgba(219, 234, 254, 0.7);
+    color: var(--primary);
+    font-size: 0.7rem;
+    padding: 3px 6px;
+    border-radius: 4px;
+    margin-bottom: 3px;
+    border-left: 3px solid var(--primary);
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.day-activity.done {
+    background: rgba(220, 252, 231, 0.6);
+    color: var(--success);
+    border-left-color: var(--success);
+    text-decoration: line-through;
+}
+
+/* --- TRANSPARENT MONTH SCROLLBAR --- */
+.month-scrollbar {
+    display: flex;
+    overflow-x: auto;
+    gap: 8px;
+    padding-bottom: 8px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.month-item {
+    padding: 6px 16px;
+    /* Transparent pill buttons */
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    text-decoration: none;
+    color: var(--text-dark);
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.month-item:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.month-item.active { 
+    background: var(--primary); 
+    color: white;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+/* Status Colors for Calendar Activities */
+.day-activity.pending {
+    background: rgba(254, 243, 199, 0.7); /* Light Amber */
+    color: #92400e;
+    border-left: 3px solid #f59e0b;
+}
+
+.day-activity.in-progress {
+    background: rgba(219, 234, 254, 0.7); /* Light Blue */
+    color: #1e40af;
+    border-left: 3px solid #3b82f6;
+}
+
+.day-activity.completed {
+    background: rgba(220, 252, 231, 0.7); /* Light Green */
+    color: #166534;
+    border-left: 3px solid #10b981;
+    text-decoration: line-through;
+}
+/* --- MODAL --- */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: none; align-items: center; justify-content: center;
+    z-index: 1000;
+}
+.modal-overlay.show { display: flex; }
+.modal-card { background: white; padding: 30px; border-radius: 12px; text-align: center; max-width: 400px; }
+/* --- SIDEBAR LOGO STYLES --- */
+.sidebar-logo-container {
+    text-align: center;
+    margin-bottom: 15px;
+    padding-top: 10px;
+}
+
+.sidebar-logo {
+    width: 90px; /* Adjust size as needed */
+    height: 90px;
+    border-radius: 50%; /* Makes it circular if the logo is square */
+    object-fit: cover;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    background: white; /* Helpful if the jpeg has a white background */
+    transition: transform 0.3s ease;
+}
+
+.sidebar-logo:hover {
+    transform: scale(1.08);
+    border-color: var(--primary);
+}
+
+.sidebar h2 {
+    text-align: center;
+    font-size: 1.3rem;
+    color: #ffffff;
+    margin-bottom: 35px;
+    letter-spacing: 1px;
+}
+/* --- Updated Sidebar Logo Styles --- */
+.sidebar-logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px 0 10px 0;
+    width: 100%;
+}
+
+.sidebar-logo {
+    width: 90px;  /* Adjust size as needed */
+    height: 90px; /* Must match width for a perfect circle */
+    border-radius: 50%; 
+    object-fit: cover; /* Prevents stretching */
+    background-color: #fff; /* High contrast for the DCC logo */
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    display: block;
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 1.2rem;
+    color: #ffffff;
+}
+/* Update your login-card class in login.php */
+.login-card { 
+    /* rgba(255, 255, 255, 0.2) makes it 80% transparent */
+    background: rgba(255, 255, 255, 0.2); 
+    
+    /* This creates the frosted glass blur effect */
+    backdrop-filter: blur(15px); 
+    -webkit-backdrop-filter: blur(15px); 
+    
+    /* Adds a thin light border to define the shape against the background */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    
+    padding: 40px; 
+    border-radius: 20px; 
+    width: 350px; 
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3); 
+    text-align: center;
+}
+
+/* Optional: Make inputs slightly transparent too */
+.login-input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    background: rgba(255, 255, 255, 0.7); /* Slightly transparent white */
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    outline: none;
+}
